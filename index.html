@@ -1,19 +1,13 @@
 <html>
-
 <head>
-
+    <link rel="stylesheet" type="text/css" href="style.css">
+	<script src='first.js' type='text/javascript'></script>
 	<script src='easyrec.js' type='text/javascript'></script>
-	<script type='text/javascript'>
-		var apiKey      = "7261e136fa4f72fbbabe8057a904dba1";
-		var tenantId    = "AILABS_DEMO";
-	</script>
-
     <script src='easyrec-helper.js' type='text/javascript'></script>
     <script src='dummy-data.js' type='text/javascript'></script>
     <script type='text/javascript'>
         var userId="Carl";
     </script>
-    
 </head>
 
 <body>
@@ -30,6 +24,23 @@
         <a href='javascript:send_buy(dummydata["huis1388"], userId);'>       buy huis1388 3</a><br>
     </div>
 
+    <div id="recommenders">
+        <a href='javascript:easyrec_getRecommendations(
+            "otherusersalsoviewed",
+            {
+                userId:userId,
+                itemId:"huis1388",
+                drawingCallback:"drawRecommendationList"
+            })'>
+            otherusersalsoviewed
+        </a>
+    </div>
+    <div id="recommenderDiv">
+        dummy tekst, to be replaced
+    </div>
+
+    <div id="log">
+    </div>
 </body>
 
 </html>
