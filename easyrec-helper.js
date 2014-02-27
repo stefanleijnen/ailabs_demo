@@ -2,20 +2,34 @@
 function send_view(options, userId) {
     options.userId=userId;
     easyrec_sendAction("view", options);
+    otherUsersAlsoViewed(userId, options.itemId);
 }
 
 function send_rating(options, userId, ratingValue) {
     options.userId=userId;
     options.ratingValue=ratingValue;
     easyrec_sendAction("rate", options);
+    otherUsersAlsoViewed(userId, options.itemId);
 }
 
 function send_buy(options, userId) {
     options.userId=userId;
     easyrec_sendAction("buy", options);
+    otherUsersAlsoViewed(userId, options.itemId);
 }
 
-function drawRecommendationListCustom(json) {
+function otherUsersAlsoViewed(userId, itemId) {
+    easyrec_getRecommendations(
+        "otherusersalsoviewed",
+        {
+            userId:userId,
+            itemId:itemId,
+            drawingCallback:"recommendationCallbackAlsoViewed"
+        }
+    )
+}
+
+function recommendationCallbackAlsoViewed(json) {
     drawRecommendationListToDivCustom(json, "recommenderDiv");
 }
 
@@ -24,7 +38,7 @@ function drawRecommendationListToDivCustom(json, recommenderDiv) {
     if ("undefined" == typeof(json.error)) { // if no error show recommendations
 
         if (!json.recommendeditems) {
-            document.getElementById(recommenderDiv).innerHTML = "recommendation list empty";
+            document.getElementById(recommenderDiv).innerHTML = "(recommendation list empty)";
             return;
         }
 
