@@ -8,7 +8,6 @@
 </head>
 
 <body>
-
     <div id="users">
         <a href="javascript:userId='Carl';void(0);">  Carl</a>
         <a href="javascript:userId='Diana';void(0);"> Diana</a>
@@ -21,9 +20,13 @@
         for (var i in itemIDs) {
             var newElement = document.createElement('div');
             newElement.id = itemIDs[i]; newElement.className = "item";
+
+            //newElement.innerHTML = "<a href='javascript:dummydata[itemIDs[i]]"/property/1388/achter-clarenburg/>"
+
             newElement.innerHTML = "<a href='javascript:send_view(dummydata[itemIDs[i]], userId);'> view " + dummydata[itemIDs[i]].itemDescription + "</a><br>" +
             "<a href='javascript:send_rating(dummydata[itemIDs[i]], userId, 3);'> rate " + dummydata[itemIDs[i]].itemDescription + " 3</a><br>" +
             "<a href='javascript:send_buy(dummydata[itemIDs[i]], userId);'> buy " + dummydata[itemIDs[i]].itemDescription + "</a><br>";
+
             document.body.appendChild(newElement);
         }
         </script>
