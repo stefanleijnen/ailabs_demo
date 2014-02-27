@@ -200,7 +200,6 @@ function drawRecommendationList(json) {
 }
 
 function drawRecommendationListToDiv(json, recommenderDiv) {
-    log("hello, i'm now in drawRecommendationListToDiv");
     if ("undefined" == typeof(json.error)) { // if no error show recommendations
 
         try {
@@ -278,7 +277,6 @@ function drawRecommendationListWithPicturesToDiv(json, recommenderDiv) {
 function easyrec_includeJavascript(jsAdr) {
     var newJs = document.createElement('script');
     newJs.type = 'text/javascript';
-    log("including JS: " + jsAdr);
     newJs.src = jsAdr;
     document.getElementsByTagName('head')[0].appendChild(newJs);
 }
