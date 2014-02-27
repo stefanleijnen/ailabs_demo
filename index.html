@@ -19,9 +19,17 @@
     </div>
 
     <div id="items">
-        <a href='javascript:send_view(dummydata["huis1388"], userId);'>      view huis1388</a><br>
-        <a href='javascript:send_rating(dummydata["huis1388"], userId, 3);'> rate huis1388 3</a><br>
-        <a href='javascript:send_buy(dummydata["huis1388"], userId);'>       buy huis1388 3</a><br>
+        <script type='text/javascript'>
+        var itemIDs = 'huis1388,huis1379,huis1376,huis1080,huis1282'.split(',');
+        for (var i in itemIDs) {
+            var newElement = document.createElement('div');
+            newElement.id = itemIDs[i]; newElement.className = "item";
+            newElement.innerHTML = "<a href='javascript:send_view(dummydata[" + itemIDs[i] + "], userId);'> view " + itemIDs[i] + "</a><br>" +
+            "<a href='javascript:send_rating(dummydata[" + itemIDs[i] + "], userId, 3);'> rate " + itemIDs[i] + " 3</a><br>" +
+            "<a href='javascript:send_buy(dummydata[" + itemIDs[i] + "], userId);'> buy " + itemIDs[i] + "</a><br>";
+            document.body.appendChild(newElement);
+        }
+        </script>
     </div>
 
     <div id="recommenders">
