@@ -23,9 +23,13 @@
 
             //newElement.innerHTML = "<a href='javascript:dummydata[itemIDs[i]]"/property/1388/achter-clarenburg/>"
 
-            newElement.innerHTML = "<a href='javascript:send_view(dummydata[itemIDs[i]], userId);'> view " + dummydata[itemIDs[i]].itemDescription + "</a><br>" +
-            "<a href='javascript:send_rating(dummydata[itemIDs[i]], userId, 3);'> rate " + dummydata[itemIDs[i]].itemDescription + " 3</a><br>" +
-            "<a href='javascript:send_buy(dummydata[itemIDs[i]], userId);'> buy " + dummydata[itemIDs[i]].itemDescription + "</a><br>";
+            newElement.innerHTML =
+                    "<a href='javascript:send_view(dummydata[\"" + itemIDs[i] + "\"], userId);'> view "
+                    + dummydata[itemIDs[i]].itemDescription + "</a><br>"
+                    + "<a href='javascript:send_rating(dummydata[\"" + itemIDs[i] + "\"], userId, 3);'> rate "
+                    + dummydata[itemIDs[i]].itemDescription + " 3</a><br>"
+                    + "<a href='javascript:send_buy(dummydata[\"" + itemIDs[i] + "\"], userId);'> buy "
+                    + dummydata[itemIDs[i]].itemDescription + "</a><br>";
 
             document.body.appendChild(newElement);
         }
@@ -33,26 +37,32 @@
     </div>
 
     <div id="recommenders">
-        <a href='javascript:easyrec_getRecommendations(
-            "otherusersalsoviewed",
-            {
-                userId:userId,
-                itemId:"huis1388",
-                drawingCallback:"drawRecommendationListCustom"
-            })'>
-            otherusersalsoviewed
+        <a href='javascript:recommendationsForUser(userId, "huis1388")'>
+            recs
         </a>
     </div>
 
-    <div class="recommenderDivHeader">
+    <div class="recommenderHeader">
         Other users who viewed this item also viewed:
-        <div id="recommenderDiv">
+        <div id="alsoViewed">
             -
         </div>
     </div>
-    <div class="recommenderDivHeader">
+    <div class="recommenderHeader">
         Other users who bought this item also bought:
-        <div id="recommenderDivBought">
+        <div id="alsoBought">
+            -
+        </div>
+    </div>
+    <div class="recommenderHeader">
+        Other users who rated this item well also rated well (?):
+        <div id="alsoGood">
+            -
+        </div>
+    </div>
+    <div class="recommenderHeader">
+        Recommendations for this user:
+        <div id="recsForUser">
             -
         </div>
     </div>

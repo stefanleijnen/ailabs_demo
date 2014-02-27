@@ -9,28 +9,51 @@ function send_rating(options, userId, ratingValue) {
     options.userId=userId;
     options.ratingValue=ratingValue;
     easyrec_sendAction("rate", options);
-    otherUsersAlsoViewed(userId, options.itemId);
 }
 
 function send_buy(options, userId) {
     options.userId=userId;
     easyrec_sendAction("buy", options);
-    otherUsersAlsoViewed(userId, options.itemId);
+    otherUsersAlsoBought(userId, options.itemId);
 }
 
 function otherUsersAlsoViewed(userId, itemId) {
-    easyrec_getRecommendations(
-        "otherusersalsoviewed",
-        {
-            userId:userId,
-            itemId:itemId,
-            drawingCallback:"recommendationCallbackAlsoViewed"
-        }
-    )
+    easyrec_otherUsersAlsoViewed( { userId:userId, itemId:itemId, drawingCallback:"recommendationCallbackAlsoViewed" } )
 }
 
+function otherUsersAlsoBought(userId, itemId) {
+    easyrec_otherUsersAlsoBought( { userId:userId, itemId:itemId, drawingCallback:"recommendationCallbackAlsoBought" } )
+}
+
+function itemsRatedGoodByOtherUsers(userId, itemId) {
+    easyrec_itemsRatedGoodByOtherUsers( { userId:userId, itemId:itemId, drawingCallback:"recommendationCallbackAlsoGood" } )
+}
+
+function recommendationsForUser(userId, itemId) {
+    easyrec_recommendationsForUser( { userId:userId, drawingCallback:"recommendationCallbackUser" } )
+}
+
+function relatedItems(userId, itemId) {
+    easyrec_relatedItems( { userId:userId, drawingCallback:"recommendationCallbackUser" } )
+}
+
+easyrec_relatedItems
+
+
 function recommendationCallbackAlsoViewed(json) {
-    drawRecommendationListToDivCustom(json, "recommenderDiv");
+    drawRecommendationListToDivCustom(json, "alsoViewed");
+}
+
+function recommendationCallbackAlsoBought(json) {
+    drawRecommendationListToDivCustom(json, "alsoBought");
+}
+
+function recommendationCallbackAlsoGood(json) {
+    drawRecommendationListToDivCustom(json, "alsoGood");
+}
+
+function recommendationCallbackUser(json) {
+    drawRecommendationListToDivCustom(json, "recsForUser");
 }
 
 function drawRecommendationListToDivCustom(json, recommenderDiv) {
@@ -53,7 +76,7 @@ function drawRecommendationListToDivCustom(json, recommenderDiv) {
             items = new Array(items);
         }
 
-// display recommendations in the DIV layer 'recommendation'
+        // display recommendations in the DIV layer 'recommendation'
         if (items.length > 0) {
             listString = "<ul>";
 
@@ -66,7 +89,7 @@ function drawRecommendationListToDivCustom(json, recommenderDiv) {
             }
             document.getElementById(recommenderDiv).innerHTML += listString + "</ul>";
         } else {
-            document.getElementById(recommenderDiv).innerHTML = "recommendation list empty";
+            document.getElementById(recommenderDiv).innerHTML = "(recommendation list empty...)";
         }
     }
 }
