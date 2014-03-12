@@ -56,6 +56,7 @@
             <div id="items" class="col-md-6">
                 <h4>Items</h4>
                 <script type='text/javascript'>
+<<<<<<< HEAD
                     var itemIDs = Object.keys(dummydata).slice(0,5);
 
                     for (var i in itemIDs) {
@@ -79,6 +80,36 @@
                     </a>
                 </div>
 
+=======
+                var itemIDs = 'huis1388,huis1379,huis1376,huis1080,huis1282'.split(',');
+                for (var i in itemIDs) {
+                    var newElement = document.createElement('div');
+                    newElement.id = itemIDs[i]; newElement.className = "item";
+
+                    //newElement.innerHTML = "<a href='javascript:dummydata[itemIDs[i]]"/property/1388/achter-clarenburg/>"
+
+                    newElement.innerHTML =
+                            "<a href='javascript:send_view(dummydata[\"" + itemIDs[i] + "\"], userId);'> view "
+                            + dummydata[itemIDs[i]].itemDescription + "</a><br>"
+                            + "<a href='javascript:send_rating(dummydata[\"" + itemIDs[i] + "\"], userId, 3);'> rate "
+                            + dummydata[itemIDs[i]].itemDescription + " 3</a><br>"
+                            + "<a href='javascript:send_buy(dummydata[\"" + itemIDs[i] + "\"], userId);'> buy "
+                            + dummydata[itemIDs[i]].itemDescription + "</a><br>";
+
+                    document.getElementById("items").appendChild(newElement);
+                }
+                </script>
+            </div>
+
+            <div id="right" class="col-md-6">
+                <h4>Recommendations</h4>
+                <div id="recommenders">
+                    <a href='javascript:recommendationsForUser(userId, "huis1388")'>
+                        recs
+                    </a>
+                </div>
+
+>>>>>>> FETCH_HEAD
                 <div class="recommenderHeader">
                     Other users who viewed this item also viewed:
                     <div id="alsoViewed">
