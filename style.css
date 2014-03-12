@@ -1,4 +1,5 @@
 
+/* copied from Bootstrap example */
 
 body {
     padding-top: 20px;
@@ -40,17 +41,17 @@ body {
 
 /* General layout and style */
 
-#top {
-
-}
-
-#left {
-
-}
 .recommenderHeader {
     color: #444;
 }
 
 #log {
     color: #888;
+}
+
+.rating-input {
+    float: left;
+    width: 150px;
+    font-size: 18px;
+    padding-top: 4px;
 }

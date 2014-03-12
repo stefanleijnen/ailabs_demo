@@ -64,6 +64,7 @@
                         newElement.id = itemIDs[i];
                         newElement.className = "item";
                         var info = itemHTML;
+                        info = info.replace("$itemLink", "javascript:alert('view')");
                         info = info.replace("$imageSrc", item.itemImageUrl);
                         info = info.replace("$imageAlt", item.itemDescription);
                         info = info.replace("$itemID", item.itemId);
@@ -77,14 +78,13 @@
                         info = info.replace("$size", item.itemSize);
                         info = info.replace("$id", item.itemId);
                         newElement.innerHTML += info;
-                        var text = "<a href='javascript:send_view(dummydata[\"" + itemIDs[i] + "\"], userId);'> view " + dummydata[itemIDs[i]].itemDescription + "</a><br>";
-//                        text += "<a href='javascript:send_rating(dummydata[\"" + itemIDs[i] + "\"], userId, 3);'> rate " + dummydata[itemIDs[i]].itemDescription + " 3</a><br>";
-                        text += "<a href='javascript:send_buy(dummydata[\"" + itemIDs[i] + "\"], userId);'> buy " + dummydata[itemIDs[i]].itemDescription + "</a><br>";
-                        newElement.innerHTML += text;
+                        var text = "<div style='float:left;padding-top:6px;'>"
+                                + "<a href='javascript:send_view(dummydata[\"" + itemIDs[i] + "\"], userId);'>view</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ";
+                        text += "<a href='javascript:send_buy(dummydata[\"" + itemIDs[i] + "\"], userId);'> buy</a><br></div>";
+                        document.getElementById("items").appendChild(newElement);
                         var rate = '<input type="number" name="' + item.itemId + '"' + ' id="itemRater' + item.itemId
                                 + '" class="rating" data-max="5" data-min="1" />';
-                        newElement.innerHTML += rate;
-                        document.getElementById("items").appendChild(newElement);
+                        $('a .info:last').append(rate).append(text);
                         $('input:last').on('change', function () {
                             var self = $(this).get(0);
                             var val = self.value;
