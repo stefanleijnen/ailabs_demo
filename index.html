@@ -67,7 +67,8 @@
                         text += "<a href='javascript:send_rating(dummydata[\"" + itemIDs[i] + "\"], userId, 3);'> rate " + dummydata[itemIDs[i]].itemDescription + " 3</a><br>";
                         text += "<a href='javascript:send_buy(dummydata[\"" + itemIDs[i] + "\"], userId);'> buy " + dummydata[itemIDs[i]].itemDescription + "</a><br>";
                         newElement.innerHTML = text;
-                        document.body.appendChild(newElement);
+
+                        document.getElementById("items").appendChild(newElement);
                     }
                 </script>
             </div>
