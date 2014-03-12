@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AI Labs - Recommender demo</title>
     <link href="bootstrap-3.1.1-dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <!--<link href="bootstrap-3.1.1-dist/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">-->
     <link href="style.css" rel="stylesheet" type="text/css" >
+    <link href="huizen.css" rel="stylesheet" type="text/css" >
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>
+    <script src="bootstrap-rating-input.js"></script>
     <script src='first.js' type='text/javascript'></script>
     <script src='easyrec.js' type='text/javascript'></script>
     <script src='easyrec-helper.js' type='text/javascript'></script>
@@ -54,27 +55,51 @@
     <div class="container">
         <div class="row">
             <div id="items" class="col-md-6">
-                <h4>Items</h4>
+                <h3>Items</h3>
                 <script type='text/javascript'>
-
                     var itemIDs = Object.keys(dummydata).slice(0,5);
-
                     for (var i in itemIDs) {
+                        var item = dummydata[itemIDs[i]];
                         var newElement = document.createElement('div');
-                        newElement.id = itemIDs[i]; newElement.className = "item";
-
+                        newElement.id = itemIDs[i];
+                        newElement.className = "item";
+                        var h=document.createElement("H4");
+                        var t=document.createTextNode(item.itemDescription);
+                        h.appendChild(t);
+//                        newElement.appendChild(h);
+                        var info = itemHTML;
+                        info = info.replace("$imageSrc", item.itemImageUrl);
+                        info = info.replace("$imageAlt", item.itemDescription);
+                        info = info.replace("$itemID", item.itemId);
+                        info = info.replace("$propertyName", item.itemDescription);
+                        info = info.replace("$price", item.itemPrice);
+                        info = info.replace("$streetName", item.itemDescription + "," + item.itemCity);
+                        info = info.replace("$city", item.itemCity);
+                        info = info.replace("$area", item.itemArea);
+                        info = info.replace("$furnishing", item.itemFurnishing);
+                        info = info.replace("$bedrooms", item.itemBedrooms);
+                        info = info.replace("$size", item.itemSize);
+                        newElement.innerHTML += info;
                         var text = "<a href='javascript:send_view(dummydata[\"" + itemIDs[i] + "\"], userId);'> view " + dummydata[itemIDs[i]].itemDescription + "</a><br>";
                         text += "<a href='javascript:send_rating(dummydata[\"" + itemIDs[i] + "\"], userId, 3);'> rate " + dummydata[itemIDs[i]].itemDescription + " 3</a><br>";
                         text += "<a href='javascript:send_buy(dummydata[\"" + itemIDs[i] + "\"], userId);'> buy " + dummydata[itemIDs[i]].itemDescription + "</a><br>";
-                        newElement.innerHTML = text;
-
+                        newElement.innerHTML += text;
+                        var rate = '<input type="number" name="rate" id="itemRater' + item.itemId
+                                + '" class="rating" data-max="5" data-min="1" onclick="alert(\x27asdf\x27);"/>';
+                        newElement.innerHTML += rate;
                         document.getElementById("items").appendChild(newElement);
+                        document.getElementById("itemRater" + item.itemId).onclick = function() {
+                            alert("zxcv");
+                        };
+                        $('.rating-input').on('mouseenter', function () {
+                            alert("rt");
+                        });
                     }
                 </script>
             </div>
 
             <div id="right" class="col-md-6">
-                <h4>Recommendations</h4>
+                <h3>Recommendations</h3>
                 <div class="recommenderHeader">
                     Other users who viewed this item also viewed:
                     <div id="alsoViewed">

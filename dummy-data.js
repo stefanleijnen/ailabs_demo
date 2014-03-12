@@ -66,3 +66,23 @@ var dummydata =
         }
 }
 
+
+var itemHTML = '<a href="$itemLink" class="huis" id="$itemID"> \
+    <img src="$imageSrc" alt="$imageAlt" width=120 height=160 class="huisimage"/> \
+        <span class="info"> \
+            <span class="propertyname">$propertyName</span> \
+            <span class="price">$price</span> \
+            <span class="streetname">$streetName</span> \
+            <span class="clear">&nbsp;</span> \
+            <span class="infolabel">City:</span> \
+            <span class="infocontent">$city</span> \
+            <span class="infolabel">Area:</span> \
+            <span class="infocontent">$area</span> \
+            <span class="infolabel">Furnishing:</span> \
+            <span class="infocontent">$furnishing</span> \
+            <span class="infolabel">Bedrooms:</span> \
+            <span class="infocontent">$bedrooms</span> \
+            <span class="infolabel">Size:</span> \
+            <span class="infocontent">$size</span> \
+        </span> \
+        </a>';
