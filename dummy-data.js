@@ -84,5 +84,7 @@ var itemHTML = '<a href="$itemLink" class="huis" id="$itemID"> \
             <span class="infocontent">$bedrooms</span> \
             <span class="infolabel">Size:</span> \
             <span class="infocontent">$size</span> \
+            <span class="infolabel">id:</span> \
+            <span class="infocontent">$id</span> \
         </span> \
         </a>';

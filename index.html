@@ -38,11 +38,11 @@
 
     <hr>
 
-    <div class="jumbotron">
-        <h1>User specific recommendation</h1>
-        <p class="lead">AI Labs builds personalized recommendation systems</p>
-        <a class="btn btn-large btn-success" href="#">Contact us for more information</a>
-    </div>
+    <!--<div class="jumbotron">-->
+        <!--<h1>User specific recommendation</h1>-->
+        <!--<p class="lead">AI Labs builds personalized recommendation systems</p>-->
+        <!--<a class="btn btn-large btn-success" href="#">Contact us for more information</a>-->
+    <!--</div>-->
 
     <hr>
 
@@ -63,10 +63,6 @@
                         var newElement = document.createElement('div');
                         newElement.id = itemIDs[i];
                         newElement.className = "item";
-                        var h=document.createElement("H4");
-                        var t=document.createTextNode(item.itemDescription);
-                        h.appendChild(t);
-//                        newElement.appendChild(h);
                         var info = itemHTML;
                         info = info.replace("$imageSrc", item.itemImageUrl);
                         info = info.replace("$imageAlt", item.itemDescription);
@@ -79,20 +75,22 @@
                         info = info.replace("$furnishing", item.itemFurnishing);
                         info = info.replace("$bedrooms", item.itemBedrooms);
                         info = info.replace("$size", item.itemSize);
+                        info = info.replace("$id", item.itemId);
                         newElement.innerHTML += info;
                         var text = "<a href='javascript:send_view(dummydata[\"" + itemIDs[i] + "\"], userId);'> view " + dummydata[itemIDs[i]].itemDescription + "</a><br>";
-                        text += "<a href='javascript:send_rating(dummydata[\"" + itemIDs[i] + "\"], userId, 3);'> rate " + dummydata[itemIDs[i]].itemDescription + " 3</a><br>";
+//                        text += "<a href='javascript:send_rating(dummydata[\"" + itemIDs[i] + "\"], userId, 3);'> rate " + dummydata[itemIDs[i]].itemDescription + " 3</a><br>";
                         text += "<a href='javascript:send_buy(dummydata[\"" + itemIDs[i] + "\"], userId);'> buy " + dummydata[itemIDs[i]].itemDescription + "</a><br>";
                         newElement.innerHTML += text;
-                        var rate = '<input type="number" name="rate" id="itemRater' + item.itemId
-                                + '" class="rating" data-max="5" data-min="1" onclick="alert(\x27asdf\x27);"/>';
+                        var rate = '<input type="number" name="' + item.itemId + '"' + ' id="itemRater' + item.itemId
+                                + '" class="rating" data-max="5" data-min="1" />';
                         newElement.innerHTML += rate;
                         document.getElementById("items").appendChild(newElement);
-                        document.getElementById("itemRater" + item.itemId).onclick = function() {
-                            alert("zxcv");
-                        };
-                        $('.rating-input').on('mouseenter', function () {
-                            alert("rt");
+                        $('input:last').on('change', function () {
+                            var self = $(this).get(0);
+                            var val = self.value;
+                            var id = self.name;
+                            send_rating(dummydata[id], userId, val);
+                            log("rated " + id + " with value " + val);
                         });
                     }
                 </script>
@@ -140,6 +138,7 @@
     <div id="log">
     </div>
 </div>
+
 </body>
 
 </html>
