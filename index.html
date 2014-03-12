@@ -78,15 +78,15 @@
 
             <div id="right" class="col-md-6">
                 <h4>Recommendations</h4>
-                <div id="recommenders">
-                    <a href='javascript:recommendationsForUser(userId, "huis1388")'>
-                        recs
-                    </a>
-                </div>
-
                 <div class="recommenderHeader">
                     Other users who viewed this item also viewed:
                     <div id="alsoViewed">
+                        -
+                    </div>
+                </div>
+                <div class="recommenderHeader">
+                    Other users who rated this item well also rated well (?):
+                    <div id="alsoGood">
                         -
                     </div>
                 </div>
@@ -96,11 +96,10 @@
                         -
                     </div>
                 </div>
-                <div class="recommenderHeader">
-                    Other users who rated this item well also rated well (?):
-                    <div id="alsoGood">
-                        -
-                    </div>
+                <div id="recommenders">
+                    <a href='javascript:recommendationsForUser(userId, "huis1388")'> <!-- strangly, an item id is needed here - using arbitrary item -->
+                        Recommendations for user
+                    </a>
                 </div>
                 <div class="recommenderHeader">
                     Recommendations for this user:

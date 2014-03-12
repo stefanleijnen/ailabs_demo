@@ -2,31 +2,25 @@
 function send_view(options, userId) {
     options.userId=userId;
     easyrec_sendAction("view", options);
-    otherUsersAlsoViewed(userId, options.itemId);
+    document.getElementById("alsoViewed").innerHTML = "(fetching recommendations)";
+    easyrec_otherUsersAlsoViewed( { userId:userId, itemId:options.itemId, drawingCallback:"recommendationCallbackAlsoViewed" } )
 }
 
 function send_rating(options, userId, ratingValue) {
     options.userId=userId;
     options.ratingValue=ratingValue;
     easyrec_sendAction("rate", options);
+    if (ratingValue >= 4) {
+        document.getElementById("alsoGood").innerHTML = "(fetching recommendations)";
+        easyrec_itemsRatedGoodByOtherUsers( { userId:userId, itemId:options.itemId, drawingCallback:"recommendationCallbackAlsoGood" } )
+    }
 }
 
 function send_buy(options, userId) {
     options.userId=userId;
     easyrec_sendAction("buy", options);
-    otherUsersAlsoBought(userId, options.itemId);
-}
-
-function otherUsersAlsoViewed(userId, itemId) {
-    easyrec_otherUsersAlsoViewed( { userId:userId, itemId:itemId, drawingCallback:"recommendationCallbackAlsoViewed" } )
-}
-
-function otherUsersAlsoBought(userId, itemId) {
-    easyrec_otherUsersAlsoBought( { userId:userId, itemId:itemId, drawingCallback:"recommendationCallbackAlsoBought" } )
-}
-
-function itemsRatedGoodByOtherUsers(userId, itemId) {
-    easyrec_itemsRatedGoodByOtherUsers( { userId:userId, itemId:itemId, drawingCallback:"recommendationCallbackAlsoGood" } )
+    document.getElementById("alsoBought").innerHTML = "(fetching recommendations)";
+    easyrec_otherUsersAlsoBought( { userId:userId, itemId:options.itemId, drawingCallback:"recommendationCallbackAlsoBought" } )
 }
 
 function recommendationsForUser(userId, itemId) {
@@ -36,9 +30,6 @@ function recommendationsForUser(userId, itemId) {
 function relatedItems(userId, itemId) {
     easyrec_relatedItems( { userId:userId, drawingCallback:"recommendationCallbackUser" } )
 }
-
-easyrec_relatedItems
-
 
 function recommendationCallbackAlsoViewed(json) {
     drawRecommendationListToDivCustom(json, "alsoViewed");
@@ -87,7 +78,7 @@ function drawRecommendationListToDivCustom(json, recommenderDiv) {
                         "</a>" +
                         "</li>";
             }
-            document.getElementById(recommenderDiv).innerHTML += listString + "</ul>";
+            document.getElementById(recommenderDiv).innerHTML = listString + "</ul>";
         } else {
             document.getElementById(recommenderDiv).innerHTML = "(recommendation list empty...)";
         }
