@@ -1,30 +1,30 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AI Labs - Recommender demo</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="bootstrap-3.1.1-dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <!--<link href="bootstrap-3.1.1-dist/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">-->
     <link href="style.css" rel="stylesheet" type="text/css" >
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>
     <script src='first.js' type='text/javascript'></script>
-	<script src='easyrec.js' type='text/javascript'></script>
+    <script src='easyrec.js' type='text/javascript'></script>
     <script src='easyrec-helper.js' type='text/javascript'></script>
     <script src='dummy-data.js' type='text/javascript'></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-
-    <!--&lt;!&ndash; HTML5 shim, for IE6-8 support of HTML5 elements &ndash;&gt;-->
-    <!--&lt;!&ndash;[if lt IE 9]>-->
-    <!--<script src="../assets/js/html5shiv.js"></script>-->
-    <!--<![endif]&ndash;&gt;-->
-    <!--&lt;!&ndash; Fav and touch icons &ndash;&gt;-->
-    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">-->
-    <!--<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">-->
-    <!--<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">-->
-    <!--<link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
-    <!--<link rel="shortcut icon" href="../assets/ico/favicon.png">-->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 
 <body>
 
-<div class="container-narrow">
+<div class="container">
 
     <div class="masthead">
         <ul class="nav nav-pills pull-right">
@@ -51,60 +51,62 @@
         <a href="javascript:userId='Ben';void(0);">   Ben</a>
     </div>
 
-    <div class="row-fluid marketing">
-        <div id="items" class="span6">
-            <h4>Items</h4>
-            <script type='text/javascript'>
-            var itemIDs = 'huis1388,huis1379,huis1376,huis1080,huis1282'.split(',');
-            for (var i in itemIDs) {
-                var newElement = document.createElement('div');
-                newElement.id = itemIDs[i]; newElement.className = "item";
+    <div class="container">
+        <div class="row">
+            <div id="items" class="col-md-6">
+                <h4>Items</h4>
+                <script type='text/javascript'>
+                var itemIDs = 'huis1388,huis1379,huis1376,huis1080,huis1282'.split(',');
+                for (var i in itemIDs) {
+                    var newElement = document.createElement('div');
+                    newElement.id = itemIDs[i]; newElement.className = "item";
 
-                //newElement.innerHTML = "<a href='javascript:dummydata[itemIDs[i]]"/property/1388/achter-clarenburg/>"
+                    //newElement.innerHTML = "<a href='javascript:dummydata[itemIDs[i]]"/property/1388/achter-clarenburg/>"
 
-                newElement.innerHTML =
-                        "<a href='javascript:send_view(dummydata[\"" + itemIDs[i] + "\"], userId);'> view "
-                        + dummydata[itemIDs[i]].itemDescription + "</a><br>"
-                        + "<a href='javascript:send_rating(dummydata[\"" + itemIDs[i] + "\"], userId, 3);'> rate "
-                        + dummydata[itemIDs[i]].itemDescription + " 3</a><br>"
-                        + "<a href='javascript:send_buy(dummydata[\"" + itemIDs[i] + "\"], userId);'> buy "
-                        + dummydata[itemIDs[i]].itemDescription + "</a><br>";
+                    newElement.innerHTML =
+                            "<a href='javascript:send_view(dummydata[\"" + itemIDs[i] + "\"], userId);'> view "
+                            + dummydata[itemIDs[i]].itemDescription + "</a><br>"
+                            + "<a href='javascript:send_rating(dummydata[\"" + itemIDs[i] + "\"], userId, 3);'> rate "
+                            + dummydata[itemIDs[i]].itemDescription + " 3</a><br>"
+                            + "<a href='javascript:send_buy(dummydata[\"" + itemIDs[i] + "\"], userId);'> buy "
+                            + dummydata[itemIDs[i]].itemDescription + "</a><br>";
 
-                document.getElementById("items").appendChild(newElement);
-            }
-            </script>
-        </div>
-
-        <div id="right" class="span6">
-            <h4>Recommendations</h4>
-            <div id="recommenders">
-                <a href='javascript:recommendationsForUser(userId, "huis1388")'>
-                    recs
-                </a>
+                    document.getElementById("items").appendChild(newElement);
+                }
+                </script>
             </div>
 
-            <div class="recommenderHeader">
-                Other users who viewed this item also viewed:
-                <div id="alsoViewed">
-                    -
+            <div id="right" class="col-md-6">
+                <h4>Recommendations</h4>
+                <div id="recommenders">
+                    <a href='javascript:recommendationsForUser(userId, "huis1388")'>
+                        recs
+                    </a>
                 </div>
-            </div>
-            <div class="recommenderHeader">
-                Other users who bought this item also bought:
-                <div id="alsoBought">
-                    -
+
+                <div class="recommenderHeader">
+                    Other users who viewed this item also viewed:
+                    <div id="alsoViewed">
+                        -
+                    </div>
                 </div>
-            </div>
-            <div class="recommenderHeader">
-                Other users who rated this item well also rated well (?):
-                <div id="alsoGood">
-                    -
+                <div class="recommenderHeader">
+                    Other users who bought this item also bought:
+                    <div id="alsoBought">
+                        -
+                    </div>
                 </div>
-            </div>
-            <div class="recommenderHeader">
-                Recommendations for this user:
-                <div id="recsForUser">
-                    -
+                <div class="recommenderHeader">
+                    Other users who rated this item well also rated well (?):
+                    <div id="alsoGood">
+                        -
+                    </div>
+                </div>
+                <div class="recommenderHeader">
+                    Recommendations for this user:
+                    <div id="recsForUser">
+                        -
+                    </div>
                 </div>
             </div>
         </div>
