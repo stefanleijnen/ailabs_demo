@@ -83,12 +83,12 @@ body {
 .mx-button input {
     display: none;
 }
-.mx-button input         + #label1 { background-image: url(img/diana-small.png); }
+.mx-button input         + #label1 { background-image: url(img/alice-small.png); }
 .mx-button input         + #label2 { background-image: url(img/ben-small.png); }
-.mx-button input         + #label3 { background-image: url(img/alice-small.png); }
-.mx-button input:checked + #label1 { background-image: url(img/diana-big.png); }
+.mx-button input         + #label3 { background-image: url(img/carla-small.png); }
+.mx-button input:checked + #label1 { background-image: url(img/alice-big.png); }
 .mx-button input:checked + #label2 { background-image: url(img/ben-big.png); }
-.mx-button input:checked + #label3 { background-image: url(img/alice-big.png); }
+.mx-button input:checked + #label3 { background-image: url(img/carla-big.png); }
 
 .rating-input {
     float: left;
