@@ -41,13 +41,34 @@ body {
 
 /* General layout and style */
 
+@media (min-width: 1200px) {
+    .container {
+        width: 970px;
+    }
+}
+
+.masthead {
+    margin-bottom: 50px;
+}
+@media screen and (min-width: 992px) {
+    .masthead {
+        margin-bottom: 0px;
+    }
+}
+
 #photos {
+    width: 333px;
+    padding-left: 30px;
     margin: 0 auto;
-    padding-left: 100px;
-    width: 450px;
     height: 61px;
     top: -50px;
     position: relative;
+}
+@media screen and (min-width: 992px) {
+    #photos {
+        width: 650px;
+        padding-left: 300px;
+    }
 }
 .mx-button {
     float: left;
@@ -56,6 +77,8 @@ body {
 .mx-button label {
     width: 61px;
     height: 61px;
+    outline: 0px;
+    border: 0px;
 }
 .mx-button input {
     display: none;
@@ -83,3 +106,6 @@ body {
     font-size: .7em;
 }
 
+.footer {
+    margin-top: 40px;
+}

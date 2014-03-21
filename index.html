@@ -29,12 +29,14 @@
 <div class="container">
 
     <div class="masthead">
-        <ul class="nav nav-pills pull-right">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-        <h3 class="muted">AI Labs - Recommendation demo</h3>
+        <!--<ul class="nav nav-pills pull-right">-->
+            <!--<li class="active"><a href="#">Home</a></li>-->
+            <!--<li><a href="#">About</a></li>-->
+            <!--<li><a href="#">Contact</a></li>-->
+        <!--</ul>-->
+        <div class="text-muted pull-right" id="welcomeDiv"></div>
+        <script>writeWelcome()</script>
+        <h3>AI Labs - Recommendation demo</h3>
     </div>
 
     <hr>
@@ -56,7 +58,7 @@
 
     <div class="container">
         <div class="row">
-            <div id="items" class="col-md-6">
+            <div id="items" class="col-md-7">
                 <h3>Items</h3>
                 <script type='text/javascript'>
                     var itemIDs = Object.keys(dummydata).slice(0,5);
@@ -82,7 +84,7 @@
                         newElement.innerHTML += info;
                         var text = "<div style='float:left;padding-top:6px;'>"
                                 + "<a href='javascript:send_view(dummydata[\"" + itemIDs[i] + "\"], userId);'>view</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ";
-                        text += "<a href='javascript:send_buy(dummydata[\"" + itemIDs[i] + "\"], userId);'> buy</a><br></div>";
+                        text += "<a href='javascript:send_buy(dummydata[\"" + itemIDs[i] + "\"], userId);'>make appointment</a><br></div>";
                         document.getElementById("items").appendChild(newElement);
                         var rate = '<input type="number" name="' + item.itemId + '"' + ' id="itemRater' + item.itemId
                                 + '" class="rating" data-max="5" data-min="1" />';
@@ -98,7 +100,7 @@
                 </script>
             </div>
 
-            <div id="right" class="col-md-6">
+            <div id="right" class="col-md-5">
                 <h3>Recommendations</h3>
                 <div class="recommenderHeader">
                     Other users who viewed this item also viewed:

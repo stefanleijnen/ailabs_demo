@@ -73,7 +73,6 @@ var itemHTML = '<a href="$itemLink" class="huis" id="$itemID"> \
             <span class="propertyname">$propertyName</span> \
             <span class="price">$price</span> \
             <span class="streetname">$streetName</span> \
-            <span class="clear">&nbsp;</span> \
             <span class="infolabel">City:</span> \
             <span class="infocontent">$city</span> \
             <span class="infolabel">Area:</span> \
