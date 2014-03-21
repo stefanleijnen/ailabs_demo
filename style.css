@@ -41,13 +41,31 @@ body {
 
 /* General layout and style */
 
-.recommenderHeader {
-    color: #444;
+#photos {
+    margin: 0 auto;
+    padding-left: 100px;
+    width: 450px;
+    height: 61px;
+    top: -50px;
+    position: relative;
 }
-
-#log {
-    color: #888;
+.mx-button {
+    float: left;
+    padding-right: 40px;
 }
+.mx-button label {
+    width: 61px;
+    height: 61px;
+}
+.mx-button input {
+    display: none;
+}
+.mx-button input         + #label1 { background-image: url(img/diana-small.png); }
+.mx-button input         + #label2 { background-image: url(img/ben-small.png); }
+.mx-button input         + #label3 { background-image: url(img/alice-small.png); }
+.mx-button input:checked + #label1 { background-image: url(img/diana-big.png); }
+.mx-button input:checked + #label2 { background-image: url(img/ben-big.png); }
+.mx-button input:checked + #label3 { background-image: url(img/alice-big.png); }
 
 .rating-input {
     float: left;
@@ -55,3 +73,13 @@ body {
     font-size: 18px;
     padding-top: 4px;
 }
+
+.recommenderHeader {
+    color: #444;
+}
+
+#log {
+    color: #888;
+    font-size: .7em;
+}
+
