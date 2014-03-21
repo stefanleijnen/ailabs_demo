@@ -1,4 +1,4 @@
-var easyrecApiUrl="http://demo.easyrec.org:8080/api/1.0/json/";
+
 
 /*
  * Copyright 2011 Research Studios Austria Forschungsgesellschaft mBH
